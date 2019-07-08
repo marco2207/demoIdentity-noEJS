@@ -10,14 +10,13 @@
   },
   "keywords": [
     "node.js",
-    "ejs",
     "node",
     "express",
     "boilerplate"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ratracegrad/nodejs_ejs_boilerplate"
+    "url": "https://github.com/marco2207/demoIdentity-noEJS"
   },
   "license": "MIT",
   "dependencies": {
