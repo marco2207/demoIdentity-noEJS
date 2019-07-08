@@ -1,0 +1,7 @@
+{
+  "name": "Demo Identity flat HTML",
+  "description": "A website for the Identity demo",
+  "repository": "https://github.com/marco2207/demoIdentity-noEJS",
+  "keywords": ["node", "express", "heroku", "salesforce"],
+  "image": "heroku/nodejs",
+}
