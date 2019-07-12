@@ -2,6 +2,110 @@
 <html lang="en">
 
     <head>
+        <script>
+		function SFDC_testCookie() {
+		    console.log("entered SFDC_testCookie");
+		    var testScript = document.createElement("script");
+		    testScript.src = "https://el-cookie-tester.herokuapp.com/CookieTester.php";
+		    document.head.appendChild(testScript);
+		}
+
+		function SFDC_cookieCallback(result) {
+		    console.log("sees a cookie = " + result);
+		    console.log(typeof result);
+		    if ((result == 'true') || (result == true)) {
+		        setCookie("3rdPartySupport", "true", 14);
+		        console.log("3rdPartySupport set to true");
+		    } else if ((result == 'false') || (result == false)) {
+		        setCookie("3rdPartySupport", "false", 14);
+		        console.log("3rdPartySupport set to false");
+		        writeMetaTag();
+		    } else {
+		        console.log("unexpected response");
+		    }
+		}
+
+		function writeMetaTag() {
+		    console.log('third party cookies are not supported');
+		    console.log('adding meta tag');
+		    mt = document.createElement("meta");
+		    mt.setAttribute("name", "salesforce-mask-redirect");
+		    mt.setAttribute("content", "false");
+		    document.getElementsByTagName('head')[0].appendChild(mt);
+		}
+
+		function delteCookie(c_name) {
+		    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:01 GMT";
+		}
+
+		function setCookie(c_name, value, exdays) {
+		    var exdate = new Date();
+		    exdate.setDate(exdate.getDate() + exdays);
+		    var c_value = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toUTCString());
+		    document.cookie = c_name + "=" + c_value;
+		}
+
+		function getCookie(c_name) {
+		    var i, x, y, ARRcookies = document.cookie.split(";");
+		    for (i = 0; i < ARRcookies.length; i++) {
+		        x = ARRcookies[i].substr(0, ARRcookies[i].indexOf("="));
+		        y = ARRcookies[i].substr(ARRcookies[i].indexOf("=") + 1);
+		        x = x.replace(/^\s+|\s+$/g, "");
+		        if (x == c_name) {
+		            return unescape(y);
+		        }
+		    }
+		}
+
+		function runCookieTest() {
+		    if (getCookie("3rdPartySupport")) {
+		        console.log("found 3rdPartySupport cookie");
+		        if (getCookie("3rdPartySupport") === 'false') {
+		            console.log("3rdPartySupport set to false");
+		            writeMetaTag();
+		        }
+		    } else {
+		        console.log("did not find 3rdPartySupport cookie");
+		        var ifrm = document.createElement("iframe");
+		        ifrm.setAttribute("id", "3rdparty");
+		        ifrm.setAttribute("src", "https://el-cookie-tester.herokuapp.com/CookieSetter.php");
+		        ifrm.setAttribute("onLoad", "SFDC_testCookie();");
+		        ifrm.style.display = "none";
+		        document.body.appendChild(ifrm);
+		    }
+		}
+
+		function runLocalStorageTest() {
+		    console.log("testing for localStorage");
+		    var ifrm = document.createElement("iframe");
+		    ifrm.setAttribute("id", "localStorage");
+		    ifrm.setAttribute("src", "https://el-cookie-tester.herokuapp.com/localStorageTester.html");
+		    ifrm.style.display = "none";
+		    document.body.appendChild(ifrm);
+
+		}
+
+		function doTests(test) {
+		    switch (test) {
+		        case "cookie":
+		            runCookieTest();
+		            break;
+		        case "localStorage":
+		            runLocalStorageTest();
+		            break;
+		        case "both":
+		            {
+		                runCookieTest();
+		                try {
+		                    runLocalStorageTest();
+		                } catch (e) {
+		                    console.log(e);
+		                }
+		            }
+		    }
+		}
+	</script>
+        
         <title>Identity Test EJS example</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,7 +137,7 @@
         
     </head>
 
-    <body>
+    <body onload="doTests('both');">
         <div id="sign-in-link" style="position: absolute; top: 20px;right: 20px;"></div>
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
