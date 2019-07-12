@@ -48,12 +48,8 @@
                 <ul class="nav navbar-nav pull-right">
                     <li><a href="/">Home</a></li>
                     <li><a href="/about">About</a></li>
-
-                    <li>
-      <!--                   <div id="sign-in-link" style="position: absolute; top: 20px;right: 20px;"></div> -->
-                        <div id="sign-in-link"></div>
-                    </li>
-
+                    <li> <div id="sign-in-link"></div></li>
+		    <li><div id="logoutItem" style="display: none;">Logout</div></li>
                 </ul>
         
             </div>
@@ -148,8 +144,13 @@
                 content.appendChild(community);
 
 
-                var logout = document.createElement('a'); 
+                /* var logout = document.createElement('a'); 
                 logout.href = "javascript:SFIDWidget.logout();SFIDWidget.cancel();";
+                logout.innerHTML = "logout";
+                logout.setAttribute("style", "float:right");
+                content.appendChild(logout); */
+		var logout = var x = document.getElementById("logoutItem");
+		logout.href = "javascript:SFIDWidget.logout();SFIDWidget.cancel();";
                 logout.innerHTML = "logout";
                 logout.setAttribute("style", "float:right");
                 content.appendChild(logout);
