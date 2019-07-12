@@ -105,7 +105,7 @@
 		logout.href = "javascript:SFIDWidget.logout();SFIDWidget.cancel();";
                 logout.innerHTML = "logout";
                 logout.setAttribute("style", "float:right");
-                content.appendChild(logout);
+                logout.style.display = "block";
 		    
                 var username = document.createElement('span');
                 username.innerHTML = identity.username;
