@@ -2,110 +2,6 @@
 <html lang="en">
 
     <head>
-        <script>
-		function SFDC_testCookie() {
-		    console.log("entered SFDC_testCookie");
-		    var testScript = document.createElement("script");
-		    testScript.src = "https://el-cookie-tester.herokuapp.com/CookieTester.php";
-		    document.head.appendChild(testScript);
-		}
-
-		function SFDC_cookieCallback(result) {
-		    console.log("sees a cookie = " + result);
-		    console.log(typeof result);
-		    if ((result == 'true') || (result == true)) {
-		        setCookie("3rdPartySupport", "true", 14);
-		        console.log("3rdPartySupport set to true");
-		    } else if ((result == 'false') || (result == false)) {
-		        setCookie("3rdPartySupport", "false", 14);
-		        console.log("3rdPartySupport set to false");
-		        writeMetaTag();
-		    } else {
-		        console.log("unexpected response");
-		    }
-		}
-
-		function writeMetaTag() {
-		    console.log('third party cookies are not supported');
-		    console.log('adding meta tag');
-		    mt = document.createElement("meta");
-		    mt.setAttribute("name", "salesforce-mask-redirect");
-		    mt.setAttribute("content", "false");
-		    document.getElementsByTagName('head')[0].appendChild(mt);
-		}
-
-		function delteCookie(c_name) {
-		    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:01 GMT";
-		}
-
-		function setCookie(c_name, value, exdays) {
-		    var exdate = new Date();
-		    exdate.setDate(exdate.getDate() + exdays);
-		    var c_value = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toUTCString());
-		    document.cookie = c_name + "=" + c_value;
-		}
-
-		function getCookie(c_name) {
-		    var i, x, y, ARRcookies = document.cookie.split(";");
-		    for (i = 0; i < ARRcookies.length; i++) {
-		        x = ARRcookies[i].substr(0, ARRcookies[i].indexOf("="));
-		        y = ARRcookies[i].substr(ARRcookies[i].indexOf("=") + 1);
-		        x = x.replace(/^\s+|\s+$/g, "");
-		        if (x == c_name) {
-		            return unescape(y);
-		        }
-		    }
-		}
-
-		function runCookieTest() {
-		    if (getCookie("3rdPartySupport")) {
-		        console.log("found 3rdPartySupport cookie");
-		        if (getCookie("3rdPartySupport") === 'false') {
-		            console.log("3rdPartySupport set to false");
-		            writeMetaTag();
-		        }
-		    } else {
-		        console.log("did not find 3rdPartySupport cookie");
-		        var ifrm = document.createElement("iframe");
-		        ifrm.setAttribute("id", "3rdparty");
-		        ifrm.setAttribute("src", "https://el-cookie-tester.herokuapp.com/CookieSetter.php");
-		        ifrm.setAttribute("onLoad", "SFDC_testCookie();");
-		        ifrm.style.display = "none";
-		        document.body.appendChild(ifrm);
-		    }
-		}
-
-		function runLocalStorageTest() {
-		    console.log("testing for localStorage");
-		    var ifrm = document.createElement("iframe");
-		    ifrm.setAttribute("id", "localStorage");
-		    ifrm.setAttribute("src", "https://el-cookie-tester.herokuapp.com/localStorageTester.html");
-		    ifrm.style.display = "none";
-		    document.body.appendChild(ifrm);
-
-		}
-
-		function doTests(test) {
-		    switch (test) {
-		        case "cookie":
-		            runCookieTest();
-		            break;
-		        case "localStorage":
-		            runLocalStorageTest();
-		            break;
-		        case "both":
-		            {
-		                runCookieTest();
-		                try {
-		                    runLocalStorageTest();
-		                } catch (e) {
-		                    console.log(e);
-		                }
-		            }
-		    }
-		}
-	</script>
-        
         <title>Identity Test EJS example</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -116,7 +12,7 @@
         <meta name="salesforce-community" content="https://sandbox-drive-customer-1139-dev-ed-16b5c07758c.cs89.force.com/customers">
         <meta name="salesforce-client-id" content="3MVG9sSN_PMn8tjRW7DqQghuor_g757EsK.gGwGpuKOP1OzBD34pV2J.CHeWMZXTOe_noVOs2DeqCAJRVL1Jl">
         <meta name="salesforce-redirect-uri" content="https://electron-identity.herokuapp.com/_callback">
-        <meta name="salesforce-mode" content="inline">
+        <meta name="salesforce-mode" content="modal">
         <meta name="salesforce-target" content="#sign-in-link">
         <meta name="salesforce-save-access-token" content="true">
         <meta name="salesforce-forgot-password-enabled" content="false">
