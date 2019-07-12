@@ -33,7 +33,7 @@
         
     </head>
 
-    <body onload="doTests('both');">
+    <body>
         
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
@@ -149,7 +149,7 @@
                 logout.innerHTML = "logout";
                 logout.setAttribute("style", "float:right");
                 content.appendChild(logout); */
-		var logout = var x = document.getElementById("logoutItem");
+		var logout = document.getElementById("logoutItem");
 		logout.href = "javascript:SFIDWidget.logout();SFIDWidget.cancel();";
                 logout.innerHTML = "logout";
                 logout.setAttribute("style", "float:right");
