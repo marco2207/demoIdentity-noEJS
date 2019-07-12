@@ -100,6 +100,13 @@
                 var img = document.createElement('img');
                  img.src = identity.photos.thumbnail;
                 img.className = "sfid-avatar";
+		    
+		var logout = document.getElementById("logoutItem");
+		logout.href = "javascript:SFIDWidget.logout();SFIDWidget.cancel();";
+                logout.innerHTML = "logout";
+                logout.setAttribute("style", "float:right");
+                content.appendChild(logout);
+		    
                 var username = document.createElement('span');
                 username.innerHTML = identity.username;
                 username.className = "sfid-avatar-name";
@@ -149,11 +156,7 @@
                 logout.innerHTML = "logout";
                 logout.setAttribute("style", "float:right");
                 content.appendChild(logout); */
-		var logout = document.getElementById("logoutItem");
-		logout.href = "javascript:SFIDWidget.logout();SFIDWidget.cancel();";
-                logout.innerHTML = "logout";
-                logout.setAttribute("style", "float:right");
-                content.appendChild(logout);
+		
 
                 var t = document.createElement('div'); 
                 t.id = "sfid-token";
