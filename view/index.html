@@ -102,10 +102,6 @@
                 img.className = "sfid-avatar";
 		    
 		var logout = document.getElementById("logoutItem");
-		//logout.onclick = "javascript:SFIDWidget.logout();SFIDWidget.cancel();";
-		// logout.onclick = "onLogout()";
-                // logout.innerHTML = "logout";
-                // logout.setAttribute("style", "float:right");
                 logout.style.display = "block";
 		    
                 var username = document.createElement('span');
@@ -172,19 +168,13 @@
 	
 	
 	function onLogout() {
-            SFIDWidget.init();
+           //SFIDWidget.init();
+	    SFIDWidget.logout();
+	    SFIDWidget.cancel()
 
-    /*        var aero = document.getElementById("aero_link");
-            aero.href = "#";
-            aero.innerHTML = 'Login for more info';
-
-            var reactor = document.getElementById("reactor_link");
-            reactor.href = "#";
-            reactor.innerHTML = 'Login for more info';
-
-            var chemex = document.getElementById("chemex_link");
-            chemex.href = "#";
-            chemex.innerHTML = 'Login for more info'; */
+	    var logout = document.getElementById("logoutItem");
+                logout.style.display = "none";
+   
 	
 	}
         </script>
