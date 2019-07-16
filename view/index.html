@@ -49,7 +49,7 @@
                     <li><a href="/">Home</a></li>
                     <li><a href="/about">About</a></li>
                     <li> <div id="sign-in-link"></div></li>
-		    <li><div id="logoutItem" style="display: none;">Logout</div></li>
+		    <li><a href="javascript:onLogout()" style="display: none;">Logout</a></li>
                 </ul>
         
             </div>
@@ -103,9 +103,9 @@
 		    
 		var logout = document.getElementById("logoutItem");
 		//logout.onclick = "javascript:SFIDWidget.logout();SFIDWidget.cancel();";
-		logout.onclick = "onLogout()";
-                logout.innerHTML = "logout";
-                logout.setAttribute("style", "float:right");
+		// logout.onclick = "onLogout()";
+                // logout.innerHTML = "logout";
+                // logout.setAttribute("style", "float:right");
                 logout.style.display = "block";
 		    
                 var username = document.createElement('span');
