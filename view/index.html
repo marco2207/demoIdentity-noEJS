@@ -49,9 +49,8 @@
                     <li><a href="/">Home</a></li>
                     <li><a href="/about">About</a></li>
                     <li> <div id="sign-in-link"></div></li>
-		<!--    <li><a id="logoutItem" href="javascript:SFIDWidget.logout();SFIDWidget.cancel();" style="display: none;">Logout</a></li> -->
-		    <li><a id="logoutItem" href="javascript:onLogout()" style="display: none;">Logout</a></li>
-                </ul>
+		    <li><a id="logoutItem" href="javascript:SFIDWidget.logout();SFIDWidget.cancel();onLogout();" style="display: none;">Logout</a></li>
+		    </ul>
         
             </div>
         </nav>
@@ -170,8 +169,6 @@
 	
 	function onLogout() {
            //SFIDWidget.init();
-	    SFIDWidget.logout();
-	    SFIDWidget.cancel()
 
 	    var logout = document.getElementById("logoutItem");
                 logout.style.display = "none";
