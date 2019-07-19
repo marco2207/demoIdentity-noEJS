@@ -15,6 +15,7 @@
         <meta name="salesforce-mode" content="modal">
         <meta name="salesforce-target" content="#sign-in-link">
         <meta name="salesforce-save-access-token" content="true">
+	<meta name="salesforce-self-register-enabled" content="true">
         <meta name="salesforce-forgot-password-enabled" content="false">
         <meta name="salesforce-login-handler" content="onLogin">
         <meta name="salesforce-logout-handler" content="onLogout">
@@ -49,7 +50,7 @@
                     <li><a href="/">Home</a></li>
                     <li><a href="/about">About</a></li>
                     <li> <div id="sign-in-link"></div></li>
-		    <li><a id="logoutItem" href="javascript:SFIDWidget.logout();SFIDWidget.cancel();onLogout();" style="display: none;">Logout</a></li>
+		    <li><a id="logoutItem" href="javascript:SFIDWidget.logout();SFIDWidget.cancel();onLogout();" style="visibility: hidden;">Logout</a></li>
 		    </ul>
         
             </div>
@@ -102,7 +103,7 @@
                 img.className = "sfid-avatar";
 		    
 		var logout = document.getElementById("logoutItem");
-                logout.style.display = "block";
+                logout.style.visibility = "visible";
 		    
                 var username = document.createElement('span');
                 username.innerHTML = identity.username;
